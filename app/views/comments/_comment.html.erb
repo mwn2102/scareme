@@ -1,0 +1,7 @@
+<p><%=comment.body%></p>
+<p>Created by <%=comment.user.name%> on <%=comment.created_at.strftime("%B %d, %Y")%> </p>
+<% if comment.user == current_user %>
+    <p>
+      <%= link_to 'Delete Comment', post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+<%end%>

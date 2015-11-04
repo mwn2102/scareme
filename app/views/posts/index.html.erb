@@ -1,0 +1,19 @@
+<h1>Posts#index</h1>
+<h3><%=link_to "Submit your scare story", new_post_path %></h3>
+
+<ul>
+    <%@posts.each do |post| %>
+    <li><%=link_to post.title, post%></li>
+    <li><%=post.content%></li>
+    <li><%=post.category.area%></li>
+    <li><%=post.user.name%></li>
+    <% if current_user == post.user %>
+        <li>
+            <%=link_to "Edit", edit_post_path(post) %> |
+            <%=link_to "Delete", post_path(post), method: :delete %> 
+        </li>  
+    <%end%>
+    <%end%>
+<ul>
+<%= will_paginate %>
+    
