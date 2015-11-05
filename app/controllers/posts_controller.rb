@@ -1,11 +1,24 @@
 class PostsController < ApplicationController
-  before_action :set_post, except: [:index, :new, :create]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_post, except: [:index, :new, :create, :search]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
-    # @posts = Post.all.order(created_at: :desc) 
-    @posts = Post.paginate(:page => params[:page], :per_page => 4).order(created_at: :desc) 
+    @categories = Category.all
+    if params[:category].blank?
+      if params[:filter] == "random"
+        @posts = Post.random_top_story.paginate(page: params[:page])
+      elsif params[:filter] == "top"
+        @posts = Post.top_story.paginate(page: params[:page])
+      else  
+        @posts = Post.paginate(page: params[:page])
+      end
+    else  
+      @category_id = Category.find_by(area: params[:category]).id
+      @posts = Post.where(category_id: @category_id).paginate(page: params[:page])
+      #removed this scope because now using default scopes: .order(created_at: :desc)
+    end
+
   end
 
   def new
@@ -48,6 +61,10 @@ class PostsController < ApplicationController
   def downvote
     @post.downvote_from current_user
     redirect_to :back
+  end
+  
+  def search
+    @posts = Post.search(params).paginate(page: params[:page])
   end
   
   private

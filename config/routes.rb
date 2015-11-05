@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       patch "like", to:    "posts#upvote"
       patch "dislike", to: "posts#downvote"
     end
+    get 'search', on: :collection
     resources :comments
   end
   

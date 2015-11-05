@@ -16,3 +16,64 @@
  
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+    background-color: rgb(60, 56, 56);
+}
+
+.story {
+    background-color: #231E1E;
+    margin-top: 20px;
+    border-radius: 5px;
+    border-color: black;
+    border: solid 2px;
+    padding: 10px;
+    list-style: none;
+    
+}
+
+.story_color {
+    color: #E8DEDE;
+}
+
+.line_1 {
+    margin: 20px 5px;
+}
+
+.lines_created {
+    margin-left: 1em;
+}
+
+.lines {
+    display: inline;
+}
+
+.lines_2 {
+    padding-left: 80%;
+}
+
+.category_list {
+    margin-top: 20px;
+}
+
+#category_heading {
+    text-align: center;
+}
+
+.navbar-default {
+    background-color: #ACADB5;
+}
+
+a.navbar-brand {
+    font-size: 2em;
+    font-weight: 500;
+}
+
+.main a {
+	color: inherit !important;
+}
+
+#bs-example-navbar-collapse-1 ul li a {
+    font-weight: 800;
+}
+
